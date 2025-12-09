@@ -16,7 +16,7 @@ public class LibraryApplication implements CommandLineRunner {
     private CategoryRepository categoryRepository;
 
     private PersonRepository personRepository;
-	public LibraryApplication(CategoryRepository categoryRepository) {
+	public LibraryApplication(CategoryRepository categoryRepository,PersonRepository personRepository) {
         this.categoryRepository = categoryRepository;
         this.personRepository = personRepository;
 	}
