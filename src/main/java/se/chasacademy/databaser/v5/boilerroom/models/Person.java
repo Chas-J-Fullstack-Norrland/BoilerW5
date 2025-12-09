@@ -4,14 +4,14 @@ public class Person {
     int personId;
     String name;
     String adress;
-    int phoneNumber;
+    String phoneNumber;
 
 
 
     public Person() {}
 
 
-    public Person(int personId, String name, String address, int phoneNumber) {
+    public Person(int personId, String name, String address, String phoneNumber) {
         this.personId = personId;
         this.name = name;
         this.adress = address;
@@ -44,11 +44,11 @@ public class Person {
         this.adress = adress;
     }
 
-    public int phoneNumber() {
+    public String phoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

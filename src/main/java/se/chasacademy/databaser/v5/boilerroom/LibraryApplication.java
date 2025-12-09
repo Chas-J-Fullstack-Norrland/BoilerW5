@@ -4,6 +4,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import se.chasacademy.databaser.v5.boilerroom.repository.CategoryRepository;
+import se.chasacademy.databaser.v5.boilerroom.models.Person;
+import se.chasacademy.databaser.v5.boilerroom.repository.PersonRepository;
+
 
 import java.util.List;
 import java.util.Map;
@@ -12,8 +15,10 @@ import java.util.Map;
 public class LibraryApplication implements CommandLineRunner {
     private CategoryRepository categoryRepository;
 
+    private PersonRepository personRepository;
 	public LibraryApplication(CategoryRepository categoryRepository) {
-		this.categoryRepository = categoryRepository;
+        this.categoryRepository = categoryRepository;
+        this.personRepository = personRepository;
 	}
 
 	public static void main(String[] args) {
@@ -32,6 +37,8 @@ public class LibraryApplication implements CommandLineRunner {
         rows = categoryRepository.CountBooksPerCategoryAndLibrary();
         rows.stream().forEach((Row)-> {Row.forEach((column,value)->System.out.print(value.toString()+"|"));System.out.println(""); });
 
+        var all = personRepository.findAll();
+        System.out.println("Antal personer: " + all.size());
 
     }
 }
