@@ -6,6 +6,20 @@ public class Person {
     String adress;
     int phoneNumber;
 
+
+
+    public Person() {}
+
+
+    public Person(int personId, String name, String address, int phoneNumber) {
+        this.personId = personId;
+        this.name = name;
+        this.adress = address;
+        this.phoneNumber = phoneNumber;
+    }
+
+
+
     public int personId() {
         return personId;
     }
