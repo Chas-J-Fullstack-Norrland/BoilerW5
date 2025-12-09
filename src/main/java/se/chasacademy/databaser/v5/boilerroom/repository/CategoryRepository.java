@@ -4,6 +4,7 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 import se.chasacademy.databaser.v5.boilerroom.models.Category;
+import se.chasacademy.databaser.v5.boilerroom.repository.mapper.CategoryMapper;
 
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,16 @@ public class CategoryRepository {
                                 "group by categoryname,adress\n" +
                                 "order by adress")
                 .query().listOfRows();
+    }
+
+
+    public List<Category> AllCategories(){
+
+        return jdbcClient.sql("Select categoryname from category\n" +
+                "order by categoryname")
+                .query(new CategoryMapper())
+                .list();
+
     }
 
 
