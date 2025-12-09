@@ -1,10 +1,18 @@
 package se.chasacademy.databaser.v5.boilerroom.Models;
 
 public class Person {
-
+    int personId;
     String name;
     String adress;
     int phoneNumber;
+
+    public int personId() {
+        return personId;
+    }
+
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
 
     public String name() {
         return name;
