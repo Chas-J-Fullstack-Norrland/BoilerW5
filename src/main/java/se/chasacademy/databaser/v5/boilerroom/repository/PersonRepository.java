@@ -22,14 +22,14 @@ public class PersonRepository {
 
         public List<Person> findAll() {
             return jdbcClient.sql("SELECT * FROM person")
-                    .query(Person.class)
+                    .query(new PersonRowMapper())
                     .list();
         }
 
         public Optional<Person> findById(int id) {
-            return jdbcClient.sql("SELECT personid, personname, adress, phonenumber FROM person WHERE personid = :id")
+            return jdbcClient.sql("SELECT * FROM person WHERE personid = :id")
                     .param("id", id)
-                    .query(Person.class)
+                    .query(new PersonRowMapper())
                     .optional();
         }
     }
