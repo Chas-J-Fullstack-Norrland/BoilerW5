@@ -4,7 +4,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import se.chasacademy.databaser.v5.boilerroom.repository.CategoryRepository;
-import se.chasacademy.databaser.v5.boilerroom.models.Person;
 import se.chasacademy.databaser.v5.boilerroom.repository.PersonRepository;
 
 
@@ -39,7 +38,9 @@ public class LibraryApplication implements CommandLineRunner {
 
         while(running){
             switch(reader.readLine()){
+                case "count_person" -> count_person();
                 case "all_person" -> all_person();
+                case "all_categories"-> all_categories();
                 case "books_per_category" -> books_per_category();
                 case "books_per_category library" -> books_per_category_and_library();
                 case "quit" -> running = false;
@@ -48,6 +49,10 @@ public class LibraryApplication implements CommandLineRunner {
 
 
 
+    }
+
+    public void all_categories(){
+        categoryRepository.AllCategories().forEach(System.out::println);
     }
 
 
@@ -64,9 +69,13 @@ public class LibraryApplication implements CommandLineRunner {
         rows.stream().forEach((Row)-> {Row.forEach((column,value)->System.out.print(value.toString()+"|"));System.out.println(""); });
     }
 
-    public void all_person(){
+    public void count_person(){
         var all = personRepository.findAll();
         System.out.println("Antal personer: " + all.size());
+    }
+    public void all_person(){
+        var all = personRepository.findAll();
+        all.forEach(System.out::println);
     }
 
 }

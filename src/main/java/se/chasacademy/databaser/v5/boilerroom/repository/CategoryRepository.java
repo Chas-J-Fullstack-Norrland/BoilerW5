@@ -35,18 +35,20 @@ public class CategoryRepository {
         return jdbcClient.sql(
                 "Select categoryname,Count(*) as total\n" +
                         "from categoryJunc\n" +
-                        "Inner join category on category.categoryid = categoryjunc.categoryid\n" +
+                        "left join category on category.categoryid = categoryjunc.categoryid\n" +
                         "group by categoryname\n" +
                         "order by categoryname")
                 .query().listOfRows();
     }
+
+    //Row{"Column1":value, "Column2":value, "Column3":value }
 
     public List<Map<String, Object>> CountBooksPerCategoryAndLibrary(){
 
         return jdbcClient.sql(
                         "Select adress,categoryname,Count(*) as total\n" +
                                 "from categoryJunc\n" +
-                                "Inner join category on category.categoryid = categoryjunc.categoryid\n" +
+                                "full join category on category.categoryid = categoryjunc.categoryid\n" +
                                 "Inner join bookcopy on categoryjunc.bookid = bookcopy.bookid\n" +
                                 "Inner join library on bookcopy.LibraryID = library.libraryID\n" +
                                 "group by categoryname,adress\n" +
@@ -57,7 +59,7 @@ public class CategoryRepository {
 
     public List<Category> AllCategories(){
 
-        return jdbcClient.sql("Select categoryname from category\n" +
+        return jdbcClient.sql("Select * from category\n" +
                 "order by categoryname")
                 .query(new CategoryMapper())
                 .list();
