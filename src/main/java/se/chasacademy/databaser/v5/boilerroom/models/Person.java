@@ -1,4 +1,4 @@
-package se.chasacademy.databaser.v5.boilerroom.Models;
+package se.chasacademy.databaser.v5.boilerroom.models;
 
 public class Person {
     int personId;
